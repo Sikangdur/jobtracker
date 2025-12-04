@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Tracker Addurroh</title>
+  <meta name="description" content="Job application tracker — Senior Engineer Edition" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/supabase-js@2"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Job Tracker <span class="badge">Senior Edition</span></h1>
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">Dark Mode</button>
+    </header>
+
+    <!-- KPI Dashboard -->
+    <div class="dashboard">
+      <div class="card total"><span id="totalCount">0</span><br>Total</div>
+      <div class="card applied"><span id="appliedCount">0</span><br>Applied</div>
+      <div class="card interview"><span id="interviewCount">0</span><br>Interview</div>
+      <div class="card offer"><span id="offerCount">0</span><br>Offer</div>
+      <div class="card success"><span id="successRate">0%</span><br>Success Rate</div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button id="addBtn" class="btn-primary">+ Tambah Lamaran</button>
+      <label class="btn-secondary">
+        Import CSV <input type="file" id="csvImport" accept=".csv" hidden />
+      </label>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+      <table id="jobTable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Perusahaan</th>
+            <th>Posisi</th>
+            <th>Tanggal</th>
+            <th>Status</th>
+            <th>Catatan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="jobBody"></tbody>
+      </table>
+      <p id="emptyState" class="empty">Belum ada lamaran. Yuk mulai apply! 🚀</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <h2 id="modalTitle">Tambah Lamaran Baru</h2>
+      <form id="jobForm">
+        <input type="date" id="date" required />
+        <input type="text" id="company" placeholder="Perusahaan" required />
+        <input type="text" id="position" placeholder="Posisi" required />
+        <select id="status" required>
+          <option value="Applied">Applied</option>
+          <option value="Interview">Interview</option>
+          <option value="Offer">Offer</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Ghosted">Ghosted</option>
+        </select>
+        <textarea id="notes" placeholder="Catatan (link, recruiter, dll)" rows="3"></textarea>
+        <div class="modal-actions">
+          <button type="submit" id="saveBtn" class="btn-primary">Simpan</button>
+          <button type="button" id="cancelBtn" class="btn-secondary">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
